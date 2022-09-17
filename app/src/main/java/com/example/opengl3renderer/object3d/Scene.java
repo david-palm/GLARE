@@ -18,14 +18,16 @@ import com.example.opengl3renderer.renderer.Texture;
 
 public class Scene extends Layer {
     Camera camera;
-    Light[] lights;
+    PointLight[] pointLights;
+    Vec3 ambientLight;
     Object3D object;
 
     public Scene(Vec2 aspectRatio, Context context){
         // Creating camera and lights
         camera = new Camera(new Vec3( 0.0f, 0.0f, -5.0f), 60.0f, 9.0f / 16.0f);
-        lights = new Light[1];
-        lights[0] = new Light(new Vec3(1.0f, 0.0f, 1.0f), new Vec3(1.0f, 1.0f, 1.0f), 1.0f);
+        pointLights = new PointLight[1];
+        pointLights[0] = new PointLight(new Vec3(1.0f, 0.0f, 1.0f), new Vec3(1.0f, 1.0f, 1.0f), 1.0f);
+        ambientLight = new Vec3(0.25f, 0.25f, 0.25f);
 
         // Creating a cube
         // Creating mesh
@@ -93,30 +95,34 @@ public class Scene extends Layer {
         this.camera = camera;
     }
 
-    public Light[] getLights() {
-        return lights;
+    public PointLight[] getPointLights() {
+        return pointLights;
     }
 
-    public Vec3[] getLightPositions(){
+    public Vec3[] getPointLightPositions(){
         Vec3[] lightPositions = new Vec3[1];
-        for(int i = 0; i < lights.length; i++){
-            lightPositions[i] = lights[i].getPosition();
+        for(int i = 0; i < pointLights.length; i++){
+            lightPositions[i] = pointLights[i].getPosition();
         }
         return lightPositions;
     }
 
-    public Vec3[] getLightColors(){
+    public Vec3[] getPointLightColors(){
         Vec3[] lightColors = new Vec3[1];
-        for(int i = 0; i < lights.length; i++){
-            if(lights[i] != null) {
-                lightColors[i] = lights[i].getColor();
+        for(int i = 0; i < pointLights.length; i++){
+            if(pointLights[i] != null) {
+                lightColors[i] = pointLights[i].getColor();
             }
         }
         return lightColors;
     }
 
-    public void setLight(Light light, int index) {
-        lights[index] = light;
+    public void setPointLight(PointLight pointLight, int index) {
+        pointLights[index] = pointLight;
+    }
+
+    public Vec3 getAmbientLight() {
+        return ambientLight;
     }
 
     public Object3D getObject() {

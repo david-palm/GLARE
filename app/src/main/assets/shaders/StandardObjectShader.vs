@@ -8,11 +8,11 @@ out OUTSTRUCT{
     vec3 fragmentPosition;
     vec2 texCoord;
     vec3 tangentFragmentPosition;
-    vec3 tangentLightPositions[1];
+    vec3 tangentPointLightPositions[1];
     vec3 tangentViewPosition;
 } vOut;
 
-uniform vec3 uLightPositions[1];
+uniform vec3 uPointLightPositions[1];
 
 uniform mat4 uModel;
 uniform mat4 uView;
@@ -32,7 +32,7 @@ void main(){
     vOut.tangentFragmentPosition = tbn * vOut.fragmentPosition;
 
     for(int i = 0; i < 1; i++){
-        vOut.tangentLightPositions[i] = tbn * uLightPositions[i];
+        vOut.tangentPointLightPositions[i] = tbn * uPointLightPositions[i];
     }
     vec3 viewPosition = vec3(uView[3][0], uView[3][1], uView[3][2]);
     vOut.tangentViewPosition = tbn * viewPosition;

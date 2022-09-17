@@ -15,8 +15,9 @@ public class StandardObjectShader extends ObjectShader {
     Uniform normalIntensity;
     Uniform roughness;
     Uniform roughnessIntensity;
-    Uniform lightPositions;
-    Uniform lightColors;
+    Uniform pointLightPositions;
+    Uniform pointLightColors;
+    Uniform ambientLight;
     public StandardObjectShader(Context context) {
         super(context, "shaders/StandardObjectShader.vs", "shaders/StandardObjectShader.fs");
         textured = new Uniform("uTextured", shaderProgramId);
@@ -26,8 +27,9 @@ public class StandardObjectShader extends ObjectShader {
         normalIntensity = new Uniform("uNormalIntensity", shaderProgramId);
         roughness = new Uniform("uRoughness", 2, shaderProgramId);
         roughnessIntensity = new Uniform("uRoughnessIntensity", shaderProgramId);
-        lightPositions = new Uniform("uLightPositions", new Mat4(), shaderProgramId);
-        lightColors = new Uniform("uLightColors", new Mat4(), shaderProgramId);
+        pointLightPositions = new Uniform("uPointLightPositions", new Mat4(), shaderProgramId);
+        pointLightColors = new Uniform("uPointLightColors", new Mat4(), shaderProgramId);
+        ambientLight = new Uniform("uAmbientLight", new Vec3(), shaderProgramId);
     }
 
     public void setTextured(boolean isTextured) {
@@ -62,12 +64,16 @@ public class StandardObjectShader extends ObjectShader {
         roughnessIntensity.setObject(intensity);
         roughnessIntensity.sendToShader();
     }
-    public void setLightPositions(Vec3[] lightPositions){
-        this.lightPositions.setObject(lightPositions);
-        this.lightPositions.sendToShader();
+    public void setPointLightPositions(Vec3[] pointLightPositions){
+        this.pointLightPositions.setObject(pointLightPositions);
+        this.pointLightPositions.sendToShader();
     }
-    public void setLightColors(Vec3[] lightColors){
-        this.lightColors.setObject(lightColors);
-        this.lightColors.sendToShader();
+    public void setPointLightColors(Vec3[] pointLightColors){
+        this.pointLightColors.setObject(pointLightColors);
+        this.pointLightColors.sendToShader();
+    }
+    public void setAmbientLight(Vec3 ambientLight){
+        this.ambientLight.setObject(ambientLight);
+        this.ambientLight.sendToShader();
     }
 }

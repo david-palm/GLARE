@@ -20,6 +20,7 @@ uniform vec3 uCameraPosition;
 
 uniform vec3 uLightPosition;
 uniform vec3 uLightColor;
+uniform vec3 uAmbientLightColor;
 
 uniform mat4 uModel;
 uniform mat4 uView;

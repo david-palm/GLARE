@@ -51,8 +51,9 @@ public class Object3D {
         material.getShader().setView(scene.getCamera().getView());
         material.getShader().setProjection(scene.getCamera().getProjection());
         //Sending lights to shader
-        material.getShader().setLightPositions(scene.getLightPositions());
-        material.getShader().setLightColors(scene.getLightColors());
+        material.getShader().setPointLightPositions(scene.getPointLightPositions());
+        material.getShader().setPointLightColors(scene.getPointLightColors());
+        material.getShader().setAmbientLight(scene.getAmbientLight());
 
         // Sending textures
         GLES32.glActiveTexture(GLES32.GL_TEXTURE0);

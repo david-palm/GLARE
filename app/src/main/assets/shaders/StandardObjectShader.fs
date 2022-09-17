@@ -7,7 +7,7 @@ in OUTSTRUCT{
     vec3 fragmentPosition;
     vec2 texCoord;
     vec3 tangentFragmentPosition;
-    vec3 tangentLightPositions[1];
+    vec3 tangentPointLightPositions[1];
     vec3 tangentViewPosition;
 } vIn;
 
@@ -16,13 +16,13 @@ uniform sampler2D uAlbedo;
 uniform sampler2D uNormal;
 uniform sampler2D uRoughness;
 
-uniform vec3 uLightPositons[1];
-uniform vec3 uLightColors[1];
+uniform vec3 uPointLightPositons[1];
+uniform vec3 uPointLightColors[1];
 uniform vec3 uAmbientLight;
 
-float calculateBlinnPhong(vec3 tangentLightPosition, vec3 normal, float exponent){
+float calculateBlinnPhong(vec3 tangentPointLightPosition, vec3 normal, float exponent){
     // Calculating diffuse lighting
-    vec3 lightDirection = normalize(tangentLightPosition - vIn.tangentFragmentPosition);
+    vec3 lightDirection = normalize(tangentPointLightPosition - vIn.tangentFragmentPosition);
     float diffuse =  max(dot(lightDirection, normal), 0.0);
 
     // Calculating specular lighting
@@ -41,5 +41,7 @@ void main(){
     // Converting values to [-1, 1] range. Normal is already in tangent space
     normal = normalize(normal * 2.0 - 1.0);
 
-    fragColor = vec4(color * calculateBlinnPhong(vIn.tangentLightPositions[0], normal, 32.0) * uLightColors[0], 1.0);
+    vec4 blinnPhong = vec4(color * calculateBlinnPhong(vIn.tangentPointLightPositions[0], normal, 32.0) * uPointLightColors[0], 1.0);
+    vec4 ambient = vec4(color * uAmbientLight, 1.0);
+    fragColor = ambient + blinnPhong;
 }
