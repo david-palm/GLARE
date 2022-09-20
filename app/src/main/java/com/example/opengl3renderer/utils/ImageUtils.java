@@ -10,9 +10,6 @@ import android.util.Log;
 import android.view.inputmethod.InputBinding;
 
 
-import com.example.opengl3renderer.JavaHDR.HDREncoder;
-import com.example.opengl3renderer.JavaHDR.HDRImage;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -59,16 +56,6 @@ public class ImageUtils {
         return textureID[0];
     }
 
-    public static FloatBuffer loadHDRIfromAssets(String fileName, Context context) throws IOException {
-        File file = context.getFileStreamPath(fileName);
-        HDRImage hdrImage = HDREncoder.readHDR(file, true);
-        float[] data = hdrImage.getInternalData();
-        FloatBuffer b = FloatBuffer.allocate(data.length);
-        b.put(data);
-        b.flip();
-        return b;
-
-    }
 
     public static int createHDRI(FloatBuffer data){
         int[] frameBufferID = new int[1];

@@ -1,4 +1,4 @@
-package com.example.opengl3renderer.object3d;
+package com.example.opengl3renderer.scene.object3d;
 
 import android.content.Context;
 
@@ -7,8 +7,9 @@ import com.example.opengl3renderer.math.Vec3;
 import com.example.opengl3renderer.math.Vec4;
 import com.example.opengl3renderer.renderer.Uniform;
 import com.example.opengl3renderer.renderer.Texture;
+import com.example.opengl3renderer.scene.object3d.Object3DShader;
 
-public class PbrObjectShader extends ObjectShader {
+public class PbrObject3DShader extends Object3DShader {
     Uniform color;
     Uniform colorIntensity;
     Uniform normal;
@@ -26,7 +27,7 @@ public class PbrObjectShader extends ObjectShader {
 
     Uniform lightPositions;
     Uniform lightColors;
-    public PbrObjectShader(Context context) {
+    public PbrObject3DShader(Context context) {
         super(context, "shaders/PbrObjectShader.vs", "shaders/PbrObjectShader.fs");
         color = new Uniform("uAlbedo", new Vec4(1.0f, 1.0f, 1.0f, 1.0f), shaderProgramId);
         colorIntensity = new Uniform("uColorIntensity", 1.0f, shaderProgramId);

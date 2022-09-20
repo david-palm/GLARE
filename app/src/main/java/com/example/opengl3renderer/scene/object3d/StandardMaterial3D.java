@@ -1,10 +1,10 @@
-package com.example.opengl3renderer.object3d;
+package com.example.opengl3renderer.scene.object3d;
 
 import com.example.opengl3renderer.math.Vec4;
 import com.example.opengl3renderer.renderer.Texture;
 
 public class StandardMaterial3D extends Material3D {
-    StandardObjectShader shader;
+    StandardObject3DShader shader;
 
     boolean textured;
     Vec4 color;
@@ -15,7 +15,7 @@ public class StandardMaterial3D extends Material3D {
     float roughnessIntensity;
 
     // Creates a light grey material
-    public StandardMaterial3D(StandardObjectShader shader) {
+    public StandardMaterial3D(StandardObject3DShader shader) {
         this.shader = shader;
 
         textured = false;
@@ -40,10 +40,10 @@ public class StandardMaterial3D extends Material3D {
         this.shader.setRoughnessIntensity(roughnessIntensity);
     }
 
-    public void setShader(StandardObjectShader shader) {
+    public void setShader(StandardObject3DShader shader) {
         this.shader = shader;
     }
-    public StandardObjectShader getShader() {
+    public StandardObject3DShader getShader() {
         return shader;
     }
     public boolean isTextured() {

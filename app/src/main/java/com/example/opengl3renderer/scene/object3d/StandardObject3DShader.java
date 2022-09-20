@@ -1,4 +1,4 @@
-package com.example.opengl3renderer.object3d;
+package com.example.opengl3renderer.scene.object3d;
 
 import android.content.Context;
 
@@ -6,8 +6,9 @@ import com.example.opengl3renderer.math.Mat4;
 import com.example.opengl3renderer.math.Vec3;
 import com.example.opengl3renderer.math.Vec4;
 import com.example.opengl3renderer.renderer.Uniform;
+import com.example.opengl3renderer.scene.object3d.Object3DShader;
 
-public class StandardObjectShader extends ObjectShader {
+public class StandardObject3DShader extends Object3DShader {
     Uniform textured;
     Uniform color;
     Uniform albedo;
@@ -18,7 +19,7 @@ public class StandardObjectShader extends ObjectShader {
     Uniform pointLightPositions;
     Uniform pointLightColors;
     Uniform ambientLight;
-    public StandardObjectShader(Context context) {
+    public StandardObject3DShader(Context context) {
         super(context, "shaders/StandardObjectShader.vs", "shaders/StandardObjectShader.fs");
         textured = new Uniform("uTextured", shaderProgramId);
         color = new Uniform("uColor", shaderProgramId);

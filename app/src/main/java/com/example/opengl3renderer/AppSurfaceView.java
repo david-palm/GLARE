@@ -59,7 +59,6 @@ public class AppSurfaceView extends GLSurfaceView {
             case MotionEvent.ACTION_UP:
                 appRenderer.onEvent(new TouchUpEvent(deviceCoordinate.x, deviceCoordinate.y));
                 return true;
-
         }
         return true;
     }

@@ -1,11 +1,12 @@
 package com.example.opengl3renderer.renderer;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class BufferLayout {
-    ArrayList<BufferElement> elements;
+    List<BufferElement> elements;
     int stride;
-    public BufferLayout(ArrayList<BufferElement> elements){
+    public BufferLayout(List<BufferElement> elements){
         this.elements = elements;
         stride = 0;
         calculateOffsetAndStride();
@@ -21,7 +22,7 @@ public class BufferLayout {
         }
     }
 
-    public ArrayList<BufferElement> getElements(){
+    public List<BufferElement> getElements(){
         return elements;
     }
 

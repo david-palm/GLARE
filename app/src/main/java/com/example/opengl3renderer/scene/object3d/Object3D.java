@@ -1,4 +1,4 @@
-package com.example.opengl3renderer.object3d;
+package com.example.opengl3renderer.scene.object3d;
 
 import android.opengl.GLES32;
 import android.util.Log;
@@ -7,6 +7,7 @@ import com.example.opengl3renderer.math.Mat4;
 import com.example.opengl3renderer.math.Vec3;
 import com.example.opengl3renderer.math.Vec4;
 import com.example.opengl3renderer.renderer.Mesh;
+import com.example.opengl3renderer.scene.Scene;
 
 
 public class Object3D {
@@ -20,7 +21,7 @@ public class Object3D {
 
 
     // If no material is given to the constructor, the standard material is assigned to the object.
-    public Object3D(Mesh mesh, StandardObjectShader shader){
+    public Object3D(Mesh mesh, StandardObject3DShader shader){
         this(mesh, new StandardMaterial3D(shader));
     }
 
@@ -38,7 +39,7 @@ public class Object3D {
     }
 
     // Draws object to the screen
-    public void render(Scene scene){
+    public void onRender(Scene scene){
         // Binding shader and make OpenGL calls
         material.getShader().bind();
         // Sending material values to shader
@@ -65,14 +66,13 @@ public class Object3D {
         GLES32.glActiveTexture(GLES32.GL_TEXTURE2);
         GLES32.glBindTexture(GLES32.GL_TEXTURE_2D, material.getRoughness().getId());
 
-        mesh.render();
+        mesh.onRender();
         material.getShader().unbind();
     }
 
     public void rotate(Vec4 rotation){
         model = Mat4.multiply(Mat4.rotation(rotation.getVec3(), rotation.w), model);
         material.getShader().setModel(model);
-
     }
 
     public void translate(Vec3 translation){

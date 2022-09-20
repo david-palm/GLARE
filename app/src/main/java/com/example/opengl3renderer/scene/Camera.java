@@ -1,6 +1,4 @@
-package com.example.opengl3renderer.object3d;
-
-import android.util.Log;
+package com.example.opengl3renderer.scene;
 
 import com.example.opengl3renderer.math.Mat4;
 import com.example.opengl3renderer.math.Vec3;
@@ -19,10 +17,6 @@ public class Camera {
         this.fov = fov;
         this.aspectRatio = aspectRatio;
         view = Mat4.lookAt(position, new Vec3(0.0f), new Vec3(0,0.1f,0));
-        Log.d("Camera", view.x1 + " " + view.x2 + " " + view.x3 + " " + view.x4 );
-        Log.d("Camera", view.y1 + " " + view.y2 + " " + view.y3 + " " + view.y4 );
-        Log.d("Camera", view.z1 + " " + view.z2 + " " + view.z3 + " " + view.z4 );
-        Log.d("Camera", view.w1 + " " + view.w2 + " " + view.w3 + " " + view.w4 );
         view = new Mat4();
         view.y4 = 0.25f;
         view.z4 = -5.0f;

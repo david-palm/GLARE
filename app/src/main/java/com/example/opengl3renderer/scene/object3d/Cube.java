@@ -1,6 +1,10 @@
-package com.example.opengl3renderer.object3d;
+package com.example.opengl3renderer.scene.object3d;
 
+import com.example.opengl3renderer.renderer.BufferElement;
 import com.example.opengl3renderer.renderer.Mesh;
+import com.example.opengl3renderer.renderer.ShaderDataType;
+
+import java.util.Arrays;
 
 public class Cube extends Mesh {
     public Cube(){
@@ -57,6 +61,10 @@ public class Cube extends Mesh {
                     24, 25, 26,
                     27, 28, 29,
                     30, 31, 32,
-                    33, 34, 35});
+                    33, 34, 35}, Arrays.asList(new BufferElement[]{ new BufferElement(ShaderDataType.Vec3, "aPosition", false),
+                                                 new BufferElement(ShaderDataType.Vec2, "aTexCoord", false),
+                                                 new BufferElement(ShaderDataType.Vec3, "aNormal", false),
+                                                 new BufferElement(ShaderDataType.Vec3, "aTangent", false)}));
     }
+
 }

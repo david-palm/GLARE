@@ -1,4 +1,4 @@
-package com.example.opengl3renderer.object3d;
+package com.example.opengl3renderer.scene;
 
 import android.content.Context;
 import android.util.Log;
@@ -15,6 +15,10 @@ import com.example.opengl3renderer.math.Vec3;
 import com.example.opengl3renderer.math.Vec4;
 import com.example.opengl3renderer.renderer.Mesh;
 import com.example.opengl3renderer.renderer.Texture;
+import com.example.opengl3renderer.scene.object3d.Cube;
+import com.example.opengl3renderer.scene.object3d.Object3D;
+import com.example.opengl3renderer.scene.object3d.StandardMaterial3D;
+import com.example.opengl3renderer.scene.object3d.StandardObject3DShader;
 
 public class Scene extends Layer {
     Camera camera;
@@ -37,7 +41,7 @@ public class Scene extends Layer {
         Texture normal = new Texture(context, "normal");
         Texture roughness = new Texture(context, "roughness");
         // Creating material
-        StandardMaterial3D material = new StandardMaterial3D(new StandardObjectShader(context));
+        StandardMaterial3D material = new StandardMaterial3D(new StandardObject3DShader(context));
         material.setAlbedo(albedo);
         material.setNormal(normal);
         material.setRoughness(roughness);
@@ -56,7 +60,7 @@ public class Scene extends Layer {
     }
 
     public void onRender(){
-        object.render(this);
+        object.onRender(this);
     }
 
     // Returns true if blocking

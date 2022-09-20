@@ -1,4 +1,4 @@
-package com.example.opengl3renderer.ui;
+package com.example.opengl3renderer.ui.object2d;
 
 import android.content.Context;
 
@@ -6,20 +6,19 @@ import com.example.opengl3renderer.math.Mat4;
 import com.example.opengl3renderer.renderer.Shader;
 import com.example.opengl3renderer.renderer.Uniform;
 
-public class Shader2D extends Shader {
+public class Object2DShader extends Shader {
     protected Uniform model;
-
-    public Shader2D(String vertexShaderSource, String fragmentShaderSource) {
+    public Object2DShader(String vertexShaderSource, String fragmentShaderSource) {
         super(vertexShaderSource, fragmentShaderSource);
-        model = new Uniform("uModel", new Mat4(), shaderProgramId);
+        model = new Uniform("uModel", shaderProgramId);
     }
 
-    public Shader2D(Context context, String vertexShaderPath, String fragmentShaderPath) {
+    public Object2DShader(Context context, String vertexShaderPath, String fragmentShaderPath) {
         super(context, vertexShaderPath, fragmentShaderPath);
-        model = new Uniform("uModel", new Mat4(), shaderProgramId);
+        model = new Uniform("uModel", shaderProgramId);
     }
 
-    protected void setModel(Mat4 model){
+    public void setModel(Mat4 model){
         this.model.setObject(model);
         this.model.sendToShader();
     }

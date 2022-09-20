@@ -14,25 +14,20 @@ import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 import java.util.ArrayList;
+import java.util.List;
 
 public abstract class Mesh {
     float[] vertices;
     int[] indices;
     VertexArray vertexArray;
+    protected List<BufferElement> elements;
 
-    public Mesh(float[] vertices, int[] indices){
+    public Mesh(float[] vertices, int[] indices, List<BufferElement> elements){
         this.vertices = vertices;
         this.indices = indices;
-
         vertexArray = new VertexArray();
-        ArrayList<BufferElement> elements = new ArrayList<BufferElement>();
-
-        elements.add(new BufferElement(ShaderDataType.Vec3, "aPosition", false));
-        elements.add(new BufferElement(ShaderDataType.Vec2, "aTexCoord", false));
-        elements.add(new BufferElement(ShaderDataType.Vec3, "aNormal", false));
-        elements.add(new BufferElement(ShaderDataType.Vec3, "aTangent", false));
-        BufferLayout bufferLayout = new BufferLayout(elements);
-        vertexArray.addVertexBuffer(new VertexBuffer(vertices, bufferLayout));
+        this.elements = elements;
+        vertexArray.addVertexBuffer(new VertexBuffer(vertices, new BufferLayout(elements)));
         vertexArray.setIndexBuffer(new IndexBuffer(indices));
     }
 
@@ -48,7 +43,7 @@ public abstract class Mesh {
         return vertexArray;
     }
 
-    public void render(){
+    public void onRender(){
         vertexArray.bind();
         GLES32.glDrawElements(GLES32.GL_TRIANGLES, indices.length, GLES32.GL_UNSIGNED_INT, 0);
         vertexArray.unbind();

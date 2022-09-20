@@ -1,4 +1,4 @@
-package com.example.opengl3renderer.object3d;
+package com.example.opengl3renderer.scene;
 
 import com.example.opengl3renderer.math.Vec3;
 

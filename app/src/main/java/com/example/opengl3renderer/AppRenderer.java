@@ -11,7 +11,9 @@ import android.view.ScaleGestureDetector;
 import com.example.opengl3renderer.events.Event;
 import com.example.opengl3renderer.layers.Layer;
 import com.example.opengl3renderer.math.Vec2;
-import com.example.opengl3renderer.object3d.Scene;
+import com.example.opengl3renderer.scene.Scene;
+import com.example.opengl3renderer.ui.Component;
+import com.example.opengl3renderer.ui.object2d.card.Card;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +36,11 @@ public class AppRenderer extends ScaleGestureDetector.SimpleOnScaleGestureListen
     @Override
     public void onSurfaceCreated(GL10 gl10, EGLConfig eglConfig) {
         layerStack.add(new Scene(new Vec2(width, height), context));
+        // Creating UI test
+        Card card = new Card(context);
+        card.setScale(new Vec2(0.25f, 0.1f));
+        layerStack.add(new Component(card));
+
         GLES32.glEnable(GLES32.GL_DEPTH_TEST);
     }
 
@@ -51,11 +58,11 @@ public class AppRenderer extends ScaleGestureDetector.SimpleOnScaleGestureListen
         // Rendering background
         GLES32.glClear(GLES32.GL_COLOR_BUFFER_BIT | GLES32.GL_DEPTH_BUFFER_BIT);
         GLES32.glClearColor(0.02f, 0.02f, 0.02f, 1.0f);
-        //sceneRenderer.render();
+        // Rendering frame layer by layer
         for(int i = 0; i < layerStack.size(); i++) {
             layerStack.get(i).onRender();
+            GLES32.glClear( GLES32.GL_DEPTH_BUFFER_BIT);
         }
-        //TODO: Add GUI.render()
     }
 
     public void onEvent(Event event) {
