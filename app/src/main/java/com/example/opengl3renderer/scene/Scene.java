@@ -67,7 +67,7 @@ public class Scene extends Layer {
         return true;
     }
     public boolean onTouchUpEvent(TouchUpEvent e){
-        return true;
+        return false;
     }
     public boolean onTouchMoveEvent(TouchMoveEvent e){
         rotateObject(e.getDX(), e.getDY());

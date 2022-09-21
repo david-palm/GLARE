@@ -5,6 +5,7 @@ import android.util.Log;
 import com.example.opengl3renderer.events.Event;
 import com.example.opengl3renderer.events.EventDispatcher;
 import com.example.opengl3renderer.events.TouchDownEvent;
+import com.example.opengl3renderer.events.TouchMoveEvent;
 import com.example.opengl3renderer.layers.Layer;
 import com.example.opengl3renderer.ui.object2d.Object2D;
 
@@ -37,6 +38,7 @@ public class Component extends Layer {
     public void onEvent(Event event){
         EventDispatcher dispatcher = new EventDispatcher(event);
         dispatcher.dispatch(Event.Type.TOUCH_DOWN, (Event e) -> (onTouchDownEvent((TouchDownEvent) e)));
+        dispatcher.dispatch(Event.Type.TOUCH_MOVE, (Event e) -> (onTouchMoveEvent((TouchMoveEvent) e)));
     }
 
     @Override
@@ -54,6 +56,13 @@ public class Component extends Layer {
     public boolean onTouchDownEvent(TouchDownEvent e){
         if(isInside(e.getX(), e.getY())){
             Log.d("Component","Component clicked");
+            return true;
+        }
+        return false;
+    }
+
+    public boolean onTouchMoveEvent(TouchMoveEvent e){
+        if(isInside(e.getX(), e.getY())){
             return true;
         }
         return false;

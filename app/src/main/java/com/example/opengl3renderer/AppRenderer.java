@@ -6,6 +6,7 @@ import android.opengl.GLSurfaceView;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 import android.opengl.GLES32;
+import android.util.Log;
 import android.view.ScaleGestureDetector;
 
 import com.example.opengl3renderer.events.Event;

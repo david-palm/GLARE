@@ -1,5 +1,7 @@
 package com.example.opengl3renderer.events;
 
+import android.util.Log;
+
 public class EventDispatcher {
     private Event event;
 
@@ -10,6 +12,7 @@ public class EventDispatcher {
     public void dispatch(Event.Type type, EventHandler eventHandler){
         // Event is not dispatched, if it was already handled
         if(event.handled){
+            Log.d("Event Dispatcher", "Event already handled!");
             return;
         }
 
