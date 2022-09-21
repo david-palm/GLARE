@@ -25,7 +25,7 @@ public class Component extends Layer {
     }
 
     public boolean isInside(float x, float y){
-        for(Object2D object : objects) {
+        for(Object2D object : objects){
             if(object.isInside(x, y)){
                 return true;
             }

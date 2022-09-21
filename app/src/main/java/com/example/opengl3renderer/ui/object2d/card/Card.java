@@ -56,8 +56,8 @@ public class Card extends Object2D {
 
     @Override
     public boolean isInside(float x, float y){
-        if(x >= (position.x - scale.x) && y >= (position.y - scale.y)) {
-            if(x <= (position.x + scale.x) && y <= (position.y + scale.y)) {
+        if(x >= (position.x - scale.x) && x <= (position.x + scale.x)) {
+            if(y >= (position.y - scale.y) && y <= (position.y + scale.y)) {
                 return true;
             }
         }

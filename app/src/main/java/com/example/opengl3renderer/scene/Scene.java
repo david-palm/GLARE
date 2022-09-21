@@ -83,8 +83,7 @@ public class Scene extends Layer {
         float rotationSpeed = 150.0f;
         float degToRad = (float) (Math.PI/180.0);
         float rotX = dX * rotationSpeed * degToRad;
-        float rotY = dY * rotationSpeed * degToRad;
-        Log.d("Layer", rotX + ", " + rotY);
+        float rotY = -dY * rotationSpeed * degToRad;
         object.rotate(new Vec4(0.0f, 1.0f, 0.0f, rotX));
         object.rotate(new Vec4(1.0f, 0.0f, 0.0f, rotY));
     }

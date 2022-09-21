@@ -62,7 +62,7 @@ public class AppSurfaceView extends GLSurfaceView {
 
     static private Vec2 convertToDeviceCoordinates(Vec2 coordinate, Vec2 resolution){
         float x = coordinate.x / resolution.x * 2.0f - 1.0f;
-        float y = coordinate.y / resolution.y * 2.0f - 1.0f;
+        float y = coordinate.y / resolution.y * - 2.0f + 1.0f;
         return new Vec2(x, y);
     }
 

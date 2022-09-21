@@ -14,6 +14,7 @@ import com.example.opengl3renderer.math.Vec2;
 import com.example.opengl3renderer.math.Vec4;
 import com.example.opengl3renderer.scene.Scene;
 import com.example.opengl3renderer.ui.Component;
+import com.example.opengl3renderer.ui.UI;
 import com.example.opengl3renderer.ui.object2d.card.Card;
 import com.example.opengl3renderer.ui.object2d.card.CardMaterial;
 
@@ -36,9 +37,8 @@ public class AppRenderer extends ScaleGestureDetector.SimpleOnScaleGestureListen
     public void onSurfaceCreated(GL10 gl10, EGLConfig eglConfig){
         layerStack.add(new Scene(new Vec2(width, height), context));
         // Creating UI test
-        CardMaterial material = new CardMaterial(context, new Vec4(0.8f, 0.8f, 0.8f, 0.2f));
-        Card card = new Card(material, new Vec2(0.0f, -0.9f), new Vec2(1.0f, 0.2f), 0.0f, 0.5f);;
-        layerStack.add(new Component(card));
+        UI ui = new UI(context);
+        ui.addToLayerStack(layerStack);
 
         GLES32.glEnable(GLES32.GL_DEPTH_TEST);
     }
