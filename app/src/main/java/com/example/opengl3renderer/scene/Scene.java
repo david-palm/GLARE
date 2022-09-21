@@ -30,7 +30,7 @@ public class Scene extends Layer {
         // Creating camera and lights
         camera = new Camera(new Vec3( 0.0f, 0.0f, -5.0f), 60.0f, 9.0f / 16.0f);
         pointLights = new PointLight[1];
-        pointLights[0] = new PointLight(new Vec3(1.0f, 0.0f, 1.0f), new Vec3(1.0f, 1.0f, 1.0f), 1.0f);
+        pointLights[0] = new PointLight(new Vec3(1.0f, 0.0f, 1.0f), new Vec3(1.0f, 1.0f, 1.0f), 1.25f);
         ambientLight = new Vec3(0.25f, 0.25f, 0.25f);
 
         // Creating a cube

@@ -37,7 +37,7 @@ public class AppRenderer extends ScaleGestureDetector.SimpleOnScaleGestureListen
         layerStack.add(new Scene(new Vec2(width, height), context));
         // Creating UI test
         CardMaterial material = new CardMaterial(context, new Vec4(0.8f, 0.8f, 0.8f, 0.2f));
-        Card card = new Card(material, new Vec2(0.0f, -0.9f), new Vec2(1.0f, 0.2f), 0.0f);
+        Card card = new Card(material, new Vec2(0.0f, -0.9f), new Vec2(1.0f, 0.2f), 0.0f, 0.5f);;
         layerStack.add(new Component(card));
 
         GLES32.glEnable(GLES32.GL_DEPTH_TEST);

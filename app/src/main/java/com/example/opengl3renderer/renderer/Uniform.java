@@ -66,6 +66,15 @@ public class Uniform {
         if(object instanceof Mat4){
             GLES32.glUniformMatrix4fv(id, 1, false, ((Mat4) object).getValues());
         }
+        if(object instanceof Vec2[]){
+            // Converting Vec2 array into float array so that it can be passed to the shader
+            float[] array = new float[((Vec2[]) object).length * 2];
+            for(int i = 0; i < ((Vec2[]) object).length; i++){
+                array[i * 2] = ((Vec2[]) object)[i].x;
+                array[i * 2 + 1] = ((Vec2[]) object)[i].y;
+            }
+            GLES32.glUniform2fv(id, ((Vec2[]) object).length, array, 0);
+        }
         if(object instanceof Vec3[]){
             // Converting Vec3 array into float array so that it can be passed to the shader
             float[] array = new float[((Vec3[]) object).length * 3];
