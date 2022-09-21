@@ -6,7 +6,6 @@ import com.example.opengl3renderer.events.Event;
 import com.example.opengl3renderer.events.EventDispatcher;
 import com.example.opengl3renderer.events.TouchDownEvent;
 import com.example.opengl3renderer.layers.Layer;
-import com.example.opengl3renderer.math.Vec2;
 import com.example.opengl3renderer.ui.object2d.Object2D;
 
 import java.util.ArrayList;
@@ -35,24 +34,24 @@ public class Component extends Layer {
     }
 
     @Override
-    public void onEvent(Event event) {
+    public void onEvent(Event event){
         EventDispatcher dispatcher = new EventDispatcher(event);
         dispatcher.dispatch(Event.Type.TOUCH_DOWN, (Event e) -> (onTouchDownEvent((TouchDownEvent) e)));
     }
 
     @Override
-    public void onUpdate() {
+    public void onUpdate(){
         super.onUpdate();
     }
 
     @Override
-    public void onRender() {
+    public void onRender(){
         for(int i = 0; i < objects.size(); i++){
             objects.get(i).onRender();
         }
     }
 
-    public boolean onTouchDownEvent(TouchDownEvent e) {
+    public boolean onTouchDownEvent(TouchDownEvent e){
         if(isInside(e.getX(), e.getY())){
             Log.d("Component","Component clicked");
             return true;

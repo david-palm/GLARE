@@ -8,12 +8,12 @@ import com.example.opengl3renderer.renderer.Uniform;
 
 public class Object2DShader extends Shader {
     protected Uniform model;
-    public Object2DShader(String vertexShaderSource, String fragmentShaderSource) {
+    public Object2DShader(String vertexShaderSource, String fragmentShaderSource){
         super(vertexShaderSource, fragmentShaderSource);
         model = new Uniform("uModel", shaderProgramId);
     }
 
-    public Object2DShader(Context context, String vertexShaderPath, String fragmentShaderPath) {
+    public Object2DShader(Context context, String vertexShaderPath, String fragmentShaderPath){
         super(context, vertexShaderPath, fragmentShaderPath);
         model = new Uniform("uModel", shaderProgramId);
     }

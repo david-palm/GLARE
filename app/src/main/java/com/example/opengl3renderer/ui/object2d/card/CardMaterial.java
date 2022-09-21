@@ -42,43 +42,43 @@ public class CardMaterial extends Material2D {
         this.roundness = roundness;
     }
 
-    public CardShader getShader() {
+    public CardShader getShader(){
         return shader;
     }
 
-    public void setShader(CardShader shader) {
+    public void setShader(CardShader shader){
         this.shader = shader;
     }
 
-    public boolean isTextured() {
+    public boolean isTextured(){
         return textured;
     }
 
-    public void setTextured(boolean textured) {
+    public void setTextured(boolean textured){
         this.textured = textured;
     }
 
-    public Vec4 getColor() {
+    public Vec4 getColor(){
         return color;
     }
 
-    public void setColor(Vec4 color) {
+    public void setColor(Vec4 color){
         this.color = color;
     }
 
-    public Texture getTexture() {
+    public Texture getTexture(){
         return texture;
     }
 
-    public void setTexture(Texture texture) {
+    public void setTexture(Texture texture){
         this.texture = texture;
     }
 
-    public float getRoundness() {
+    public float getRoundness(){
         return roundness;
     }
 
-    public void setRoundness(float roundness) {
+    public void setRoundness(float roundness){
         this.roundness = roundness;
     }
 }

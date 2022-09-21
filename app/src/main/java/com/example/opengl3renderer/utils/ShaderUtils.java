@@ -13,19 +13,19 @@ public class ShaderUtils {
         int shaderID = GLES32.glCreateShader(shaderType);
         if(shaderID == 0){
             Log.e("ShaderUtils", "Error occurred while creating shader");
-            //shaderID is 0 if an error occurred while creating the shader object (probably doesn't compile)
+            // ShaderID is 0 if an error occurred while creating the shader object (probably doesn't compile)
             return 0;
         }
-        //Replacing shader code
+        // Replacing shader code
         GLES32.glShaderSource(shaderID, shaderSource);
         //
         GLES32.glCompileShader(shaderID);
-        //Check compile status
+        // Check compile status
         System.out.println("Shader compiled");
         int[] compiled = new int[1];
         GLES32.glGetShaderiv(shaderID, GLES32.GL_COMPILE_STATUS, compiled, 0);
         if(compiled[0] == 0){
-            //Shader didn't compile
+            // Shader didn't compile
             Log.e("ShaderUtils", "Shader with shader Id: "+ shaderID + " did not compile");
             GLES32.glDeleteShader(shaderID);
             return 0;
@@ -35,26 +35,24 @@ public class ShaderUtils {
     }
     //TODO: Needs ArrayList of Uniforms as parameter, so that it works for every type of renderer
     public static int createShaderProgram(int vertexShaderID, int fragmentShaderID){
-    //public static int createShaderProgram(String vertexShaderSource, String fragmentShaderSource ){
-        //int vertexShaderID = loadShader(GLES32.GL_VERTEX_SHADER, vertexShaderSource);
-        //int fragmentShaderID = loadShader(GLES32.GL_FRAGMENT_SHADER, fragmentShaderSource);
+
         int programObjectID = GLES32.glCreateProgram();
         if(programObjectID==0){
             Log.e("ShaderUtils", "Error occurred while creating shader program");
-            //programObjectID is 0 when an error occurred while creating
+            // ProgramObjectID is 0 when an error occurred while creating
             return 0;
         }
         GLES32.glAttachShader(programObjectID, vertexShaderID);
         GLES32.glAttachShader(programObjectID, fragmentShaderID);
-        //
+
         GLES32.glBindAttribLocation(programObjectID, 0, "aPosition");
         GLES32.glBindAttribLocation(programObjectID, 1, "aTexCoords");
         GLES32.glBindAttribLocation(programObjectID, 2, "aNormal");
         GLES32.glLinkProgram(programObjectID);
-        //Check link status
+        // Check link status
         int[] linked = new int[1];
         GLES32.glGetProgramiv(programObjectID, GLES32.GL_LINK_STATUS, linked,0);
-        //Check if linking had errors
+        // Check if linking had errors
         if(linked[0]==0){
             Log.e("ShaderUtils", "Error occurred while linking");
             GLES32.glDeleteProgram(programObjectID);
@@ -74,15 +72,15 @@ public class ShaderUtils {
 
         try {
             inputStream = context.getAssets().open(filePath);
-            //Create buffer with same size as input stream
+            // Create buffer with same size as input stream
             buffer = new byte[inputStream.available()];
-            //Read text file into buffer
+            // Read text file into buffer
             inputStream.read(buffer);
 
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-            //Write buffer to output stream
+            // Write buffer to output stream
             byteArrayOutputStream.write(buffer);
-            //Closing input and output stream
+            // Closing input and output stream
             byteArrayOutputStream.close();
             inputStream.close();
 

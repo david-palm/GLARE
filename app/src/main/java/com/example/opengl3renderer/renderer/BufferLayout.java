@@ -1,6 +1,5 @@
 package com.example.opengl3renderer.renderer;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class BufferLayout {

@@ -11,8 +11,6 @@ public class ShaderProgram {
     protected int programId;
     protected int vertexShaderId;
     protected int fragmentShaderId;
-    protected int[] vaoIds;
-    protected int[] vboIds;
     protected List<Uniform> uniforms;
 
     public ShaderProgram(Context context, String vertexShaderPath, String fragmentShaderPath){
@@ -24,18 +22,6 @@ public class ShaderProgram {
         fragmentShaderId = ShaderUtils.loadShader(GLES32.GL_FRAGMENT_SHADER, fragmentShaderSource);
         //create shader program
         programId = ShaderUtils.createShaderProgram(vertexShaderId, fragmentShaderId);
-    }
-
-    private void getUniformsFromShaderSource(String vertexShaderSource, String fragmentShaderSource){
-        String[] splitVertexShader = vertexShaderSource.split("\\W+");
-        String[] splitFragmentShader = fragmentShaderSource.split("\\W+");
-        //Log.d("ShaderProgram", "Test. Length: " + splitShader.length);
-        for(int i = 0; i < splitVertexShader.length; i++){
-            //Log.d("ShaderProgram", splitShader[i]);
-            if(splitVertexShader[i].equals("uniform")){
-                uniforms.add(new Uniform(splitVertexShader[i+2], null, programId));
-            }
-        }
     }
 
     public int getProgramId(){

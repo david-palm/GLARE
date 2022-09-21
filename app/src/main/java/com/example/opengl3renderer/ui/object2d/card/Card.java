@@ -10,22 +10,22 @@ import com.example.opengl3renderer.ui.object2d.Rectangle;
 public class Card extends Object2D {
     CardMaterial material;
 
-    public Card (Context context) {
+    public Card (Context context){
         super(new Rectangle(), new CardMaterial(context));
         material = new CardMaterial(context);
     }
-    public Card(CardMaterial material, Vec2 position, Vec2 scale, float rotation) {
+    public Card(CardMaterial material, Vec2 position, Vec2 scale, float rotation){
         super(new Rectangle(), material, position, scale, rotation);
         this.material = material;
     }
 
-    public Card(CardMaterial material) {
+    public Card(CardMaterial material){
         super(new Rectangle(), material);
         this.material = material;
     }
 
     @Override
-    public boolean isInside(float x, float y) {
+    public boolean isInside(float x, float y){
         if(x >= (position.x - scale.x) && y >= (position.y - scale.y)) {
             if(x <= (position.x + scale.x) && y <= (position.y + scale.y)) {
                 return true;

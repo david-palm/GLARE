@@ -11,7 +11,7 @@ public class Object3DShader extends Shader {
     protected Uniform view;
     protected Uniform projection;
 
-    public Object3DShader(Context context, String vertexShaderPath, String fragmentShaderPath) {
+    public Object3DShader(Context context, String vertexShaderPath, String fragmentShaderPath){
         super(context, vertexShaderPath, fragmentShaderPath);
         model = new Uniform("uModel", new Mat4(), shaderProgramId);
         view = new Uniform("uView", new Mat4(), shaderProgramId);

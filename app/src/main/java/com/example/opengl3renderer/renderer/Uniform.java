@@ -24,19 +24,19 @@ public class Uniform {
         this.object = object;
     }
 
-    public String getName() {
+    public String getName(){
         return name;
     }
 
-    public int getId() {
+    public int getId(){
         return id;
     }
 
-    public Object getObject() {
+    public Object getObject(){
         return object;
     }
 
-    public void setObject(Object object) {
+    public void setObject(Object object){
         this.object = object;
     }
 

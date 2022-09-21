@@ -7,7 +7,6 @@ import com.example.opengl3renderer.math.Vec3;
 import com.example.opengl3renderer.math.Vec4;
 import com.example.opengl3renderer.renderer.Uniform;
 import com.example.opengl3renderer.renderer.Texture;
-import com.example.opengl3renderer.scene.object3d.Object3DShader;
 
 public class PbrObject3DShader extends Object3DShader {
     Uniform color;

@@ -25,19 +25,19 @@ public class Camera {
     public float getFov(){
         return fov;
     }
-    public void setFov(float fov) {
+    public void setFov(float fov){
         this.fov = fov;
         projection = projection = Mat4.perspective((float)Math.toRadians(fov), aspectRatio, 0.1f, 100);
     }
-    public Vec3 getPosition() {
+    public Vec3 getPosition(){
         return position;
     }
 
-    public Mat4 getView() {
+    public Mat4 getView(){
         return view;
     }
 
-    public Mat4 getProjection() {
+    public Mat4 getProjection(){
         return projection;
     }
 }

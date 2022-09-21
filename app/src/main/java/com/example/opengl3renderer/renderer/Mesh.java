@@ -2,18 +2,6 @@ package com.example.opengl3renderer.renderer;
 
 import android.opengl.GLES32;
 
-import com.example.opengl3renderer.renderer.BufferElement;
-import com.example.opengl3renderer.renderer.BufferLayout;
-import com.example.opengl3renderer.renderer.IndexBuffer;
-import com.example.opengl3renderer.renderer.ShaderDataType;
-import com.example.opengl3renderer.renderer.VertexArray;
-import com.example.opengl3renderer.renderer.VertexBuffer;
-
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import java.nio.FloatBuffer;
-import java.nio.IntBuffer;
-import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Mesh {
@@ -31,11 +19,11 @@ public abstract class Mesh {
         vertexArray.setIndexBuffer(new IndexBuffer(indices));
     }
 
-    public float[] getVertices() {
+    public float[] getVertices(){
         return vertices;
     }
 
-    public int[] getIndices() {
+    public int[] getIndices(){
         return indices;
     }
 

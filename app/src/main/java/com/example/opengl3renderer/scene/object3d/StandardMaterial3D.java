@@ -15,7 +15,7 @@ public class StandardMaterial3D extends Material3D {
     float roughnessIntensity;
 
     // Creates a light grey material
-    public StandardMaterial3D(StandardObject3DShader shader) {
+    public StandardMaterial3D(StandardObject3DShader shader){
         this.shader = shader;
 
         textured = false;
@@ -40,52 +40,52 @@ public class StandardMaterial3D extends Material3D {
         this.shader.setRoughnessIntensity(roughnessIntensity);
     }
 
-    public void setShader(StandardObject3DShader shader) {
+    public void setShader(StandardObject3DShader shader){
         this.shader = shader;
     }
-    public StandardObject3DShader getShader() {
+    public StandardObject3DShader getShader(){
         return shader;
     }
-    public boolean isTextured() {
+    public boolean isTextured(){
         return textured;
     }
-    public void setTextured(boolean textured) {
+    public void setTextured(boolean textured){
         this.textured = textured;
     }
-    public Vec4 getColor() {
+    public Vec4 getColor(){
         return color;
     }
-    public void setColor(Vec4 color) {
+    public void setColor(Vec4 color){
         this.color = color;
     }
-    public Texture getAlbedo() {
+    public Texture getAlbedo(){
         return albedo;
     }
-    public void setAlbedo(Texture albedo) {
+    public void setAlbedo(Texture albedo){
         this.albedo = albedo;
     }
-    public Texture getNormal() {
+    public Texture getNormal(){
         return normal;
     }
-    public void setNormal(Texture normal) {
+    public void setNormal(Texture normal){
         this.normal = normal;
     }
-    public float getNormalIntensity() {
+    public float getNormalIntensity(){
         return normalIntensity;
     }
-    public void setNormalIntensity(float normalIntensity) {
+    public void setNormalIntensity(float normalIntensity){
         this.normalIntensity = normalIntensity;
     }
-    public Texture getRoughness() {
+    public Texture getRoughness(){
         return roughness;
     }
-    public void setRoughness(Texture roughness) {
+    public void setRoughness(Texture roughness){
         this.roughness = roughness;
     }
-    public float getRoughnessIntensity() {
+    public float getRoughnessIntensity(){
         return roughnessIntensity;
     }
-    public void setRoughnessIntensity(float roughnessIntensity) {
+    public void setRoughnessIntensity(float roughnessIntensity){
         this.roughnessIntensity = roughnessIntensity;
     }
 }

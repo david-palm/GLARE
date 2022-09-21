@@ -7,7 +7,7 @@ import com.example.opengl3renderer.renderer.ShaderDataType;
 import java.util.Arrays;
 
 public class Rectangle extends Mesh {
-    public Rectangle() {
+    public Rectangle(){
         super(new float[]{ -1.0f, -1.0f, 0.0f, 0.0f,
                            -1.0f, 1.0f, 0.0f, 1.0f,
                             1.0f, 1.0f, 1.0f, 1.0f,

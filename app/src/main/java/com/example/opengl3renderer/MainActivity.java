@@ -10,7 +10,7 @@ import android.view.WindowManager;
 public class MainActivity extends AppCompatActivity {
     AppSurfaceView appSurfaceView;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
@@ -18,13 +18,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onResume() {
+    protected void onResume(){
         super.onResume();
         appSurfaceView.onResume();
     }
 
     @Override
-    protected void onPause() {
+    protected void onPause(){
         super.onPause();
         appSurfaceView.onPause();
     }

@@ -3,15 +3,10 @@ package com.example.opengl3renderer.utils;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.opengl.GLES20;
 import android.opengl.GLES32;
 import android.opengl.GLUtils;
 import android.util.Log;
-import android.view.inputmethod.InputBinding;
 
-
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.FloatBuffer;

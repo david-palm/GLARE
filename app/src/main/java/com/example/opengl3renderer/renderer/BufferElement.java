@@ -17,7 +17,7 @@ public class BufferElement {
         offset = 0;
         this.normalized = normalized;
     }
-    public static int sizeOfDataType(ShaderDataType shaderDataType) {
+    public static int sizeOfDataType(ShaderDataType shaderDataType){
         switch (shaderDataType) {
             case Bool:
                 return 1;
@@ -63,7 +63,7 @@ public class BufferElement {
         return -1;
     }
 
-    public int getShaderBaseType() {
+    public int getShaderBaseType(){
         switch(shaderDataType){
             case Bool:
                 return GLES32.GL_BOOL;
@@ -82,23 +82,23 @@ public class BufferElement {
         return -1;
     }
 
-    public String getName() {
+    public String getName(){
         return name;
     }
 
-    public int getSize() {
+    public int getSize(){
         return size;
     }
 
-    public int getOffset() {
+    public int getOffset(){
         return offset;
     }
 
-    public boolean isNormalized() {
+    public boolean isNormalized(){
         return normalized;
     }
 
-    public void setOffset(int offset) {
+    public void setOffset(int offset){
         this.offset = offset;
     }
 }

@@ -50,9 +50,8 @@ public class Scene extends Layer {
         object = new Object3D(mesh, material);
     }
 
-    public void onEvent(Event event) {
+    public void onEvent(Event event){
         EventDispatcher dispatcher = new EventDispatcher(event);
-        //dispatcher.dispatch(event.getType(), (Event e) -> (onTouchEvent((TouchEvent) e)));
         dispatcher.dispatch(Event.Type.TOUCH_DOWN, (Event e) -> (onTouchDownEvent((TouchDownEvent) e)));
         dispatcher.dispatch(Event.Type.TOUCH_MOVE, (Event e) -> (onTouchMoveEvent((TouchMoveEvent) e)));
         dispatcher.dispatch(Event.Type.TOUCH_UP, (Event e) -> (onTouchUpEvent((TouchUpEvent) e)));
@@ -64,24 +63,23 @@ public class Scene extends Layer {
     }
 
     // Returns true if blocking
-    public boolean onTouchDownEvent(TouchDownEvent e) {
+    public boolean onTouchDownEvent(TouchDownEvent e){
         return true;
     }
-    public boolean onTouchUpEvent(TouchUpEvent e) {
+    public boolean onTouchUpEvent(TouchUpEvent e){
         return true;
     }
-    public boolean onTouchMoveEvent(TouchMoveEvent e) {
+    public boolean onTouchMoveEvent(TouchMoveEvent e){
         rotateObject(e.getDX(), e.getDY());
         return true;
     }
-    public boolean onScaleEvent(ScaleEvent e) {
-        Log.d("Scene", "Scalefactor: " + e.getScaleFactor());
+    public boolean onScaleEvent(ScaleEvent e){
         float zoomSpeed = 1.0f;
         camera.setFov(camera.getFov() / e.getScaleFactor() * zoomSpeed);
         return true;
     }
 
-    public void rotateObject(float dX, float dY) {
+    public void rotateObject(float dX, float dY){
         float rotationSpeed = 150.0f;
         float degToRad = (float) (Math.PI/180.0);
         float rotX = dX * rotationSpeed * degToRad;
@@ -91,15 +89,15 @@ public class Scene extends Layer {
         object.rotate(new Vec4(1.0f, 0.0f, 0.0f, rotY));
     }
 
-    public Camera getCamera() {
+    public Camera getCamera(){
         return camera;
     }
 
-    public void setCamera(Camera camera) {
+    public void setCamera(Camera camera){
         this.camera = camera;
     }
 
-    public PointLight[] getPointLights() {
+    public PointLight[] getPointLights(){
         return pointLights;
     }
 
@@ -121,19 +119,19 @@ public class Scene extends Layer {
         return lightColors;
     }
 
-    public void setPointLight(PointLight pointLight, int index) {
+    public void setPointLight(PointLight pointLight, int index){
         pointLights[index] = pointLight;
     }
 
-    public Vec3 getAmbientLight() {
+    public Vec3 getAmbientLight(){
         return ambientLight;
     }
 
-    public Object3D getObject() {
+    public Object3D getObject(){
         return object;
     }
 
-    public void setObject(Object3D object) {
+    public void setObject(Object3D object){
         this.object = object;
     }
 }

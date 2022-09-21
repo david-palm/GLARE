@@ -87,24 +87,24 @@ public class Object3D {
         shader.setModel(model);
     }
 */
-    public Mesh getMesh() {
+    public Mesh getMesh(){
         return mesh;
     }
 
-    public void setMesh(Mesh mesh) {
+    public void setMesh(Mesh mesh){
         this.mesh = mesh;
     }
 
-    public StandardMaterial3D getMaterial() {
+    public StandardMaterial3D getMaterial(){
         return material;
     }
 
 
-    public Vec3 getPosition() {
+    public Vec3 getPosition(){
         return position;
     }
 /*
-    public void setPosition(Vec3 position) {
+    public void setPosition(Vec3 position){
         this.position = position;
         model.x4 = position.x;
         model.y4 = position.y;
@@ -124,19 +124,19 @@ public class Object3D {
         shader.setModel(model);
     }
 */
-    public Vec4 getRotation() {
+    public Vec4 getRotation(){
         return rotation;
     }
 
-    public void setRotation(Vec4 rotation) {
+    public void setRotation(Vec4 rotation){
         this.rotation = rotation;
     }
 
-    public Mat4 getModel() {
+    public Mat4 getModel(){
         return model;
     }
 /*
-    public void setModel(Mat4 model) {
+    public void setModel(Mat4 model){
         this.model = model;
         shader.setModel(model);
     }

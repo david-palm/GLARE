@@ -5,7 +5,7 @@ import java.nio.ByteOrder;
 import java.nio.IntBuffer;
 import android.opengl.GLES32;
 
-public class IndexBuffer implements Buffer{
+public class IndexBuffer implements Buffer {
     int[] eboId = new int[1];
     public IndexBuffer(IntBuffer indices, int count){
         GLES32.glGenBuffers(1, eboId, 0);
@@ -31,7 +31,7 @@ public class IndexBuffer implements Buffer{
         GLES32.glBindBuffer(GLES32.GL_ELEMENT_ARRAY_BUFFER, 0);
     }
 
-    public void delete() {
+    public void delete(){
         GLES32.glDeleteBuffers(1, eboId, 0);
     }
 }

@@ -25,19 +25,19 @@ public class PointLight {
         this.color = color.multiply(intensity);
     }
 
-    public Vec3 getPosition() {
+    public Vec3 getPosition(){
         return position;
     }
 
-    public void setPosition(Vec3 position) {
+    public void setPosition(Vec3 position){
         this.position = position;
     }
 
-    public Vec3 getColor() {
+    public Vec3 getColor(){
         return color;
     }
 
-    public void setColor(Vec3 color) {
+    public void setColor(Vec3 color){
         this.color = color;
     }
 }

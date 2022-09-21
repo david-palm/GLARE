@@ -6,7 +6,6 @@ import com.example.opengl3renderer.math.Mat4;
 import com.example.opengl3renderer.math.Vec3;
 import com.example.opengl3renderer.math.Vec4;
 import com.example.opengl3renderer.renderer.Uniform;
-import com.example.opengl3renderer.scene.object3d.Object3DShader;
 
 public class StandardObject3DShader extends Object3DShader {
     Uniform textured;
@@ -33,7 +32,7 @@ public class StandardObject3DShader extends Object3DShader {
         ambientLight = new Uniform("uAmbientLight", new Vec3(), shaderProgramId);
     }
 
-    public void setTextured(boolean isTextured) {
+    public void setTextured(boolean isTextured){
         textured.setObject(isTextured);
         textured.sendToShader();
     }

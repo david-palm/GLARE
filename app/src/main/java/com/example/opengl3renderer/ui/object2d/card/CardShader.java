@@ -13,14 +13,14 @@ public class CardShader extends Object2DShader {
     Uniform texture;
     Uniform roundness;
 
-    public CardShader(Context context) {
+    public CardShader(Context context){
         super(context, "shaders/ui/card.vs", "shaders/ui/card.fs");
         textured = new Uniform("uTextured", shaderProgramId);
         color = new Uniform("uColor", shaderProgramId);
         texture = new Uniform("uTexture", shaderProgramId);
         roundness = new Uniform("uRoundness", shaderProgramId);
     }
-    public void setColor(Vec4 color) {
+    public void setColor(Vec4 color){
         this.color.setObject(color);
         this.color.sendToShader();
     }

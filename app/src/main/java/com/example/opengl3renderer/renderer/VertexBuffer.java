@@ -12,11 +12,6 @@ public class VertexBuffer implements Buffer{
     BufferLayout layout;
     public VertexBuffer(FloatBuffer vertices, int size){
         layout = new BufferLayout(new ArrayList<BufferElement>());
-        ///////////////////////
-        //Fehler liegt bei BufferLayout
-        //Vertices müssen wahrscheinlich als Vec3 Element in das Buffer Layout reingetan werden
-        //Denn BufferElement.getComponentCount() muss richtige Zahl zurückgeben
-        ///////////////////////
         GLES32.glGenBuffers(1, vboId, 0);
         GLES32.glBindBuffer(GLES32.GL_ARRAY_BUFFER, vboId[0]);
         GLES32.glBufferData(GLES32.GL_ARRAY_BUFFER, size, vertices, GLES32.GL_STATIC_DRAW);
@@ -24,7 +19,7 @@ public class VertexBuffer implements Buffer{
 
     public VertexBuffer(float[] vertices, BufferLayout bufferLayout){
         layout = bufferLayout;
-        //creating a vertex buffer that stores vertices
+        // Creating a vertex buffer that stores vertices
         FloatBuffer vertexBuffer = ByteBuffer.allocateDirect(vertices.length * 4).order(ByteOrder.nativeOrder()).asFloatBuffer();
         vertexBuffer.put(vertices).position(0);
 
@@ -41,7 +36,7 @@ public class VertexBuffer implements Buffer{
         GLES32.glBindBuffer(GLES32.GL_ARRAY_BUFFER, 0);
     }
 
-    public void delete() {
+    public void delete(){
         GLES32.glDeleteBuffers(1, vboId, 0);
     }
 
