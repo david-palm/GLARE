@@ -7,6 +7,7 @@ import com.example.opengl3renderer.renderer.Texture;
 import com.example.opengl3renderer.ui.object2d.Material2D;
 
 public class CardMaterial extends Material2D {
+    CardShader shader;
     boolean textured;
     Vec4 color;
     Texture texture;
@@ -38,6 +39,46 @@ public class CardMaterial extends Material2D {
         textured = false;
         this.color = color;
         texture = null;
+        this.roundness = roundness;
+    }
+
+    public CardShader getShader() {
+        return shader;
+    }
+
+    public void setShader(CardShader shader) {
+        this.shader = shader;
+    }
+
+    public boolean isTextured() {
+        return textured;
+    }
+
+    public void setTextured(boolean textured) {
+        this.textured = textured;
+    }
+
+    public Vec4 getColor() {
+        return color;
+    }
+
+    public void setColor(Vec4 color) {
+        this.color = color;
+    }
+
+    public Texture getTexture() {
+        return texture;
+    }
+
+    public void setTexture(Texture texture) {
+        this.texture = texture;
+    }
+
+    public float getRoundness() {
+        return roundness;
+    }
+
+    public void setRoundness(float roundness) {
         this.roundness = roundness;
     }
 }

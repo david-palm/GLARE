@@ -11,7 +11,7 @@ import com.example.opengl3renderer.renderer.Shader;
 
 public abstract class Object2D {
     protected Mesh mesh;
-    protected Material2D material;
+    Material2D material;
 
     protected Vec2 position;
     protected Vec2 scale;
@@ -89,4 +89,8 @@ public abstract class Object2D {
     }
 
     public abstract boolean isInside(float x, float y);
+
+    public Mat4 getModel(){
+        return model;
+    }
 }

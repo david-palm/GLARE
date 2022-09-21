@@ -6,14 +6,18 @@ import android.opengl.GLSurfaceView;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 import android.opengl.GLES32;
+import android.util.Log;
 import android.view.ScaleGestureDetector;
 
 import com.example.opengl3renderer.events.Event;
 import com.example.opengl3renderer.layers.Layer;
+import com.example.opengl3renderer.math.Mat4;
 import com.example.opengl3renderer.math.Vec2;
+import com.example.opengl3renderer.math.Vec4;
 import com.example.opengl3renderer.scene.Scene;
 import com.example.opengl3renderer.ui.Component;
 import com.example.opengl3renderer.ui.object2d.card.Card;
+import com.example.opengl3renderer.ui.object2d.card.CardMaterial;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,8 +41,9 @@ public class AppRenderer extends ScaleGestureDetector.SimpleOnScaleGestureListen
     public void onSurfaceCreated(GL10 gl10, EGLConfig eglConfig) {
         layerStack.add(new Scene(new Vec2(width, height), context));
         // Creating UI test
-        Card card = new Card(context);
-        card.setScale(new Vec2(0.25f, 0.1f));
+        CardMaterial material = new CardMaterial(context, new Vec4(0.8f, 0.8f, 0.8f, 1.0f));
+        Card card = new Card(material, new Vec2(0.0f, -0.9f), new Vec2(1.0f, 0.2f), 0.0f);
+        Mat4 cardModel = card.getModel();
         layerStack.add(new Component(card));
 
         GLES32.glEnable(GLES32.GL_DEPTH_TEST);

@@ -1,7 +1,7 @@
 package com.example.opengl3renderer.ui.object2d;
 
 public class Material2D {
-    protected Object2DShader shader;
+    Object2DShader shader;
 
     public Material2D() {
 
