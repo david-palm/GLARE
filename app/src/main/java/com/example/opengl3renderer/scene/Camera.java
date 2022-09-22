@@ -27,7 +27,11 @@ public class Camera {
     }
     public void setFov(float fov){
         this.fov = fov;
-        projection = projection = Mat4.perspective((float)Math.toRadians(fov), aspectRatio, 0.1f, 100);
+        projection =  Mat4.perspective((float)Math.toRadians(fov), aspectRatio, 0.1f, 100);
+    }
+    public void setAspectRatio(float aspectRatio){
+        this.aspectRatio = aspectRatio;
+        projection = Mat4.perspective((float)Math.toRadians(fov), aspectRatio, 0.1f, 100);
     }
     public Vec3 getPosition(){
         return position;

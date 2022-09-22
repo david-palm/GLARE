@@ -9,49 +9,55 @@ import com.example.opengl3renderer.ui.object2d.Rectangle;
 
 public class Card extends Object2D {
     CardMaterial material;
-    Vec2[] roundCorners;
+    Vec2[] roundedCorners;
 
-    public Card(CardMaterial material, Vec2 position, Vec2 scale, float rotation, Vec2[] roundCorners){
+    public Card(CardMaterial material, Vec2 position, Vec2 scale, float rotation, Vec2[] roundedCorners){
         super(new Rectangle(), material, position, scale, rotation);
         this.material = material;
-        this.roundCorners = roundCorners;
-    }
-
-    public Card(CardMaterial material, Vec2 position, Vec2 scale, float rotation, Vec2 roundCorners){
-        super(new Rectangle(), material, position, scale, rotation);
-        this.material = material;
-        this.roundCorners = new Vec2[4];
-        for(int i = 0; i < 4; i++){
-            this.roundCorners[i] = roundCorners;
+        this.roundedCorners = new Vec2[4];
+        for(int i = 0; i < roundedCorners.length; i++){
+            this.roundedCorners[i] = roundedCorners[i];
+        }
+        for(int i = roundedCorners.length; i < 4; i++){
+            this.roundedCorners[i] = new Vec2();
         }
     }
 
-    public Card(CardMaterial material, Vec2 position, Vec2 scale, float rotation, float roundCorners){
+    public Card(CardMaterial material, Vec2 position, Vec2 scale, float rotation, Vec2 roundedCorners){
         super(new Rectangle(), material, position, scale, rotation);
         this.material = material;
-        this.roundCorners = new Vec2[4];
+        this.roundedCorners = new Vec2[4];
         for(int i = 0; i < 4; i++){
-            this.roundCorners[i] = new Vec2(roundCorners, roundCorners);
+            this.roundedCorners[i] = roundedCorners;
+        }
+    }
+
+    public Card(CardMaterial material, Vec2 position, Vec2 scale, float rotation, float roundedCorners){
+        super(new Rectangle(), material, position, scale, rotation);
+        this.material = material;
+        this.roundedCorners = new Vec2[4];
+        for(int i = 0; i < 4; i++){
+            this.roundedCorners[i] = new Vec2(roundedCorners, roundedCorners);
         }
     }
 
     public Card(CardMaterial material, Vec2 position, Vec2 scale, float rotation){
         super(new Rectangle(), material, position, scale, rotation);
         this.material = material;
-        this.roundCorners = new Vec2[4];
+        this.roundedCorners = new Vec2[4];
     }
 
 
     public Card (Context context){
         super(new Rectangle(), new CardMaterial(context));
         material = new CardMaterial(context);
-        roundCorners = new Vec2[4];
+        roundedCorners = new Vec2[4];
     }
 
     public Card(CardMaterial material){
         super(new Rectangle(), material);
         this.material = material;
-        roundCorners = new Vec2[4];
+        roundedCorners = new Vec2[4];
     }
 
     @Override
@@ -70,23 +76,23 @@ public class Card extends Object2D {
         // Sending matrices to shader
         material.getShader().setModel(model);
         material.getShader().setColor(material.getColor());
-        material.getShader().setRoundCorners(roundCorners);
+        material.getShader().setRoundCorners(roundedCorners);
         mesh.onRender();
     }
 
-    public Vec2[] getRoundCorners(){
-        return roundCorners;
+    public Vec2[] getRoundedCorners(){
+        return roundedCorners;
     }
 
-    public void setRoundCorners(Vec2[] roundCorners){
-        if(roundCorners.length <= 4){
-            for(int i = 0; i < roundCorners.length; i++){
-                this.roundCorners[i] = roundCorners[i];
+    public void setRoundedCorners(Vec2[] roundedCorners){
+        if(roundedCorners.length <= 4){
+            for(int i = 0; i < roundedCorners.length; i++){
+                this.roundedCorners[i] = roundedCorners[i];
             }
         }
-        if(roundCorners.length > 4){
+        if(roundedCorners.length > 4){
             Log.e("CardMaterial", "A maximum of four corners is allowed");
-            this.roundCorners = new Vec2[4];
+            this.roundedCorners = new Vec2[4];
         }
     }
 }

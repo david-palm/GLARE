@@ -9,6 +9,7 @@ import com.example.opengl3renderer.events.ScaleEvent;
 import com.example.opengl3renderer.events.TouchDownEvent;
 import com.example.opengl3renderer.events.TouchMoveEvent;
 import com.example.opengl3renderer.events.TouchUpEvent;
+import com.example.opengl3renderer.events.WindowResizeEvent;
 import com.example.opengl3renderer.layers.Layer;
 import com.example.opengl3renderer.math.Vec2;
 import com.example.opengl3renderer.math.Vec3;
@@ -21,14 +22,15 @@ import com.example.opengl3renderer.scene.object3d.StandardMaterial3D;
 import com.example.opengl3renderer.scene.object3d.StandardObject3DShader;
 
 public class Scene extends Layer {
+    float aspectRatio;
     Camera camera;
     PointLight[] pointLights;
     Vec3 ambientLight;
     Object3D object;
 
-    public Scene(Vec2 aspectRatio, Context context){
+    public Scene(Context context){
         // Creating camera and lights
-        camera = new Camera(new Vec3( 0.0f, 0.0f, -5.0f), 60.0f, 9.0f / 16.0f);
+        camera = new Camera(new Vec3( 0.0f, 0.0f, -5.0f), 60.0f, 1.0f);
         pointLights = new PointLight[1];
         pointLights[0] = new PointLight(new Vec3(1.0f, 0.0f, 1.0f), new Vec3(1.0f, 1.0f, 1.0f), 1.25f);
         ambientLight = new Vec3(0.25f, 0.25f, 0.25f);
@@ -50,12 +52,21 @@ public class Scene extends Layer {
         object = new Object3D(mesh, material);
     }
 
+    public float getAspectRatio(){
+        return aspectRatio;
+    }
+
+    public void setAspectRatio(float aspectRatio){
+        this.aspectRatio = aspectRatio;
+    }
+
     public void onEvent(Event event){
         EventDispatcher dispatcher = new EventDispatcher(event);
         dispatcher.dispatch(Event.Type.TOUCH_DOWN, (Event e) -> (onTouchDownEvent((TouchDownEvent) e)));
         dispatcher.dispatch(Event.Type.TOUCH_MOVE, (Event e) -> (onTouchMoveEvent((TouchMoveEvent) e)));
         dispatcher.dispatch(Event.Type.TOUCH_UP, (Event e) -> (onTouchUpEvent((TouchUpEvent) e)));
         dispatcher.dispatch(Event.Type.SCALE_GESTURE, (Event e) -> (onScaleEvent((ScaleEvent) e)));
+        dispatcher.dispatch(Event.Type.WINDOW_RESIZE, (Event e) -> (onWindowResizeEvent((WindowResizeEvent) e)));
     }
 
     public void onRender(){
@@ -79,9 +90,15 @@ public class Scene extends Layer {
         return true;
     }
 
+    public boolean onWindowResizeEvent(WindowResizeEvent e){
+        aspectRatio = e.getX() / e.getY();
+        camera.setAspectRatio(aspectRatio);
+        return false;
+    }
+
     public void rotateObject(float dX, float dY){
         float rotationSpeed = 150.0f;
-        float degToRad = (float) (Math.PI/180.0);
+        float degToRad = (float) (Math.PI / 180.0);
         float rotX = dX * rotationSpeed * degToRad;
         float rotY = -dY * rotationSpeed * degToRad;
         object.rotate(new Vec4(0.0f, 1.0f, 0.0f, rotX));

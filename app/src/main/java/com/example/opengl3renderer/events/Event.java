@@ -16,6 +16,8 @@ public class Event {
         MULTITOUCH_DOWN,
         // ACTION_POINTER_UP
         MULTITOUCH_UP,
+        // onSurfaceChange
+        WINDOW_RESIZE,
 
         WINDOW_EVENT,
         APPLICATION_EVENT

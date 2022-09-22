@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.ScaleGestureDetector;
 
 import com.example.opengl3renderer.events.Event;
+import com.example.opengl3renderer.events.WindowResizeEvent;
 import com.example.opengl3renderer.layers.Layer;
 import com.example.opengl3renderer.math.Vec2;
 import com.example.opengl3renderer.math.Vec4;
@@ -22,7 +23,7 @@ import com.example.opengl3renderer.ui.object2d.card.CardMaterial;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AppRenderer extends ScaleGestureDetector.SimpleOnScaleGestureListener implements GLSurfaceView.Renderer {
+public class AppRenderer extends ScaleGestureDetector.SimpleOnScaleGestureListener implements GLSurfaceView.Renderer{
 
     int width;
     int height;
@@ -36,11 +37,10 @@ public class AppRenderer extends ScaleGestureDetector.SimpleOnScaleGestureListen
 
     @Override
     public void onSurfaceCreated(GL10 gl10, EGLConfig eglConfig){
-        layerStack.add(new Scene(new Vec2(width, height), context));
+        layerStack.add(new Scene(context));
         // Creating UI test
         UI ui = new UI(context);
         ui.addToLayerStack(layerStack);
-
         GLES32.glEnable(GLES32.GL_DEPTH_TEST);
     }
 
@@ -48,6 +48,7 @@ public class AppRenderer extends ScaleGestureDetector.SimpleOnScaleGestureListen
     public void onSurfaceChanged(GL10 glUnused, int width, int height){
         this.width = width;
         this.height = height;
+        onEvent(new WindowResizeEvent(width, height));
         // Set Viewport
         GLES32.glViewport(0,0, width, height);
     }

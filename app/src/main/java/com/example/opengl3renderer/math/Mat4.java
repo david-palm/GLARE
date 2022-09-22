@@ -343,6 +343,34 @@ public class Mat4 {
         return new Mat4(Mat3.rotation(axis, alpha));
     }
 
+    public static Mat4 scale(float x, float y){
+        Mat4 mat = new Mat4();
+
+        mat.x1 = x;
+        mat.y2 = y;
+
+        return mat;
+    }
+
+    public static Mat4 scale(Vec2 scale){
+        Mat4 mat = new Mat4();
+
+        mat.x1 = scale.x;
+        mat.y2 = scale.y;
+
+        return mat;
+    }
+
+    public static Mat4 scale(float x, float y, float z){
+        Mat4 mat = new Mat4();
+
+        mat.x1 = x;
+        mat.y2 = y;
+        mat.z3 = z;
+
+        return mat;
+    }
+
     public static Mat4 scale(Vec3 scale){
         Mat4 mat = new Mat4();
 
