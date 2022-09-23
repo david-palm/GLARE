@@ -90,8 +90,9 @@ public class Object3D {
     }
 
     public void startDeceleration(){
-        inertia.setDuration((long) (rotationVelocity.length() * 2000.0f));
-        Log.d("Deceleration", "Duration: " + inertia.getDuration());
+        long duration = (long) (Math.pow(10 * rotationVelocity.length(), 1) * 400);
+        inertia.setDuration(duration);
+        inertia.setFunction(new ExponentialFunction(2, duration));
         inertia.start();
     }
 
