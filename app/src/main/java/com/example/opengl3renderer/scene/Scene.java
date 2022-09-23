@@ -73,14 +73,21 @@ public class Scene extends Layer {
         object.onRender(this);
     }
 
+    public void onUpdate(){
+        object.onUpdate();
+    }
+
     // Returns true if blocking
     public boolean onTouchDownEvent(TouchDownEvent e){
         return true;
     }
     public boolean onTouchUpEvent(TouchUpEvent e){
-        return false;
+        object.setRotating(false);
+        object.startDeceleration();
+        return true;
     }
     public boolean onTouchMoveEvent(TouchMoveEvent e){
+        object.setRotating(true);
         rotateObject(e.getDX(), e.getDY());
         return true;
     }
@@ -97,12 +104,14 @@ public class Scene extends Layer {
     }
 
     public void rotateObject(float dX, float dY){
+        //TODO: Rotation speed should be dependent on fov of camera
         float rotationSpeed = 150.0f;
         float degToRad = (float) (Math.PI / 180.0);
         float rotX = dX * rotationSpeed * degToRad;
         float rotY = -dY * rotationSpeed * degToRad;
         object.rotate(new Vec4(0.0f, 1.0f, 0.0f, rotX));
         object.rotate(new Vec4(1.0f, 0.0f, 0.0f, rotY));
+        object.setRotationVelocity(new Vec3(rotX, rotY, 0.0f));
     }
 
     public Camera getCamera(){
@@ -150,4 +159,6 @@ public class Scene extends Layer {
     public void setObject(Object3D object){
         this.object = object;
     }
+
+
 }

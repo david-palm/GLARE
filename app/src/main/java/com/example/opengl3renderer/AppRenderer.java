@@ -6,22 +6,21 @@ import android.opengl.GLSurfaceView;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 import android.opengl.GLES32;
+import android.os.Handler;
+import android.os.HandlerThread;
 import android.util.Log;
 import android.view.ScaleGestureDetector;
 
 import com.example.opengl3renderer.events.Event;
 import com.example.opengl3renderer.events.WindowResizeEvent;
 import com.example.opengl3renderer.layers.Layer;
-import com.example.opengl3renderer.math.Vec2;
-import com.example.opengl3renderer.math.Vec4;
 import com.example.opengl3renderer.scene.Scene;
-import com.example.opengl3renderer.ui.Component;
 import com.example.opengl3renderer.ui.UI;
-import com.example.opengl3renderer.ui.object2d.card.Card;
-import com.example.opengl3renderer.ui.object2d.card.CardMaterial;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class AppRenderer extends ScaleGestureDetector.SimpleOnScaleGestureListener implements GLSurfaceView.Renderer{
 
@@ -30,6 +29,9 @@ public class AppRenderer extends ScaleGestureDetector.SimpleOnScaleGestureListen
 
     Context context;
     List<Layer> layerStack = new ArrayList<Layer>();
+    Timer timer;
+
+
 
     public AppRenderer(Context context){
         this.context = context;
@@ -42,6 +44,8 @@ public class AppRenderer extends ScaleGestureDetector.SimpleOnScaleGestureListen
         UI ui = new UI(context);
         ui.addToLayerStack(layerStack);
         GLES32.glEnable(GLES32.GL_DEPTH_TEST);
+        timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask(){ public void run(){onUpdate();}}, 0, 16);
     }
 
     @Override
@@ -69,6 +73,12 @@ public class AppRenderer extends ScaleGestureDetector.SimpleOnScaleGestureListen
     public void onEvent(Event event){
         for(int i = layerStack.size() - 1; i >= 0; i--) {
             layerStack.get(i).onEvent(event);
+        }
+    }
+
+    public void onUpdate(){
+        for(int i = layerStack.size() - 1; i >= 0; i--) {
+            layerStack.get(i).onUpdate();
         }
     }
 

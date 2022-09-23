@@ -3,7 +3,11 @@ package com.example.opengl3renderer.scene.object3d;
 import android.opengl.GLES32;
 import android.util.Log;
 
+import com.example.opengl3renderer.inertia.ExponentialFunction;
+import com.example.opengl3renderer.inertia.Inertia;
+import com.example.opengl3renderer.inertia.Cosine;
 import com.example.opengl3renderer.math.Mat4;
+import com.example.opengl3renderer.math.Vec2;
 import com.example.opengl3renderer.math.Vec3;
 import com.example.opengl3renderer.math.Vec4;
 import com.example.opengl3renderer.renderer.Mesh;
@@ -19,6 +23,10 @@ public class Object3D {
     Vec4 rotation;
     Mat4 model;
 
+    Vec3 rotationVelocity;
+    boolean rotating;
+    Inertia inertia;
+
 
     // If no material is given to the constructor, the standard material is assigned to the object.
     public Object3D(Mesh mesh, StandardObject3DShader shader){
@@ -33,6 +41,10 @@ public class Object3D {
         scale = new Vec3(1.0f);
         rotation = new Vec4();
         model = new Mat4();
+        rotationVelocity = new Vec3();
+
+        //inertia = new Inertia(1000, new Cosine(0.5f, 1000, new Vec2(0.0f, 0.5f)));
+        inertia = new Inertia(1000, new ExponentialFunction(2, 1000));
 
         // Setting up model matrix. Only changes when object moves
         this.material.getShader().setModel(model);
@@ -68,6 +80,19 @@ public class Object3D {
 
         mesh.onRender();
         material.getShader().unbind();
+    }
+
+    public void onUpdate(){
+        rotate(new Vec4(0.0f, 1.0f, 0.0f, rotationVelocity.x));
+        rotate(new Vec4(1.0f, 0.0f, 0.0f, rotationVelocity.y));
+        rotationVelocity.multiply(inertia.getValue());
+
+    }
+
+    public void startDeceleration(){
+        inertia.setDuration((long) (rotationVelocity.length() * 2000.0f));
+        Log.d("Deceleration", "Duration: " + inertia.getDuration());
+        inertia.start();
     }
 
     public void rotate(Vec4 rotation){
@@ -141,5 +166,19 @@ public class Object3D {
         shader.setModel(model);
     }
 */
+    public Vec3 getRotationVelocity(){
+        return rotationVelocity;
+    }
 
+    public void setRotationVelocity(Vec3 rotationVelocity){
+        this.rotationVelocity = rotationVelocity;
+    }
+
+    public boolean isRotating() {
+        return rotating;
+    }
+
+    public void setRotating(boolean rotating) {
+        this.rotating = rotating;
+    }
 }

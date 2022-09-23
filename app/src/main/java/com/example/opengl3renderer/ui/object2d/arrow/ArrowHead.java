@@ -26,7 +26,7 @@ public class ArrowHead extends Object2D {
         this.angle = angle;
         this.length = length;
         this.thickness = thickness;
-        models = new Mat4[2];
+
     }
 
     @Override
