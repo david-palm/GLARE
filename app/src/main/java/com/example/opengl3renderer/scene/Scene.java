@@ -105,7 +105,7 @@ public class Scene extends Layer {
 
     public void rotateObject(float dX, float dY){
         //TODO: Rotation speed should be dependent on fov of camera
-        float rotationSpeed = 150.0f;
+        float rotationSpeed = 2.5f * camera.getFov();
         float degToRad = (float) (Math.PI / 180.0);
         float rotX = dX * rotationSpeed * degToRad;
         float rotY = -dY * rotationSpeed * degToRad;

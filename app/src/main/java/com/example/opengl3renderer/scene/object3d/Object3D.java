@@ -90,7 +90,7 @@ public class Object3D {
     }
 
     public void startDeceleration(){
-        long duration = (long) (Math.pow(10 * rotationVelocity.length(), 1) * 400);
+        long duration = (long) (Math.pow(10 * rotationVelocity.length(), 1.4) * 800);
         inertia.setDuration(duration);
         inertia.setFunction(new ExponentialFunction(2, duration));
         inertia.start();
