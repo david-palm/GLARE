@@ -16,18 +16,22 @@ public class ArrowHead extends Object2D {
     Mat4[] models;
 
     public ArrowHead(Context context){
-        this(context, new Vec2(), (float) Math.PI/6, 0.1f, 0.02f);
+        this(context, (float) Math.PI/6, 0.1f, 0.02f, new Vec2(), 0.0f);
     }
 
-    public ArrowHead(Context context, Vec2 position, float angle, float length, float thickness){
+    public ArrowHead(Context context, float angle, float length, float thickness, Vec2 position, float rotation){
         super(new Rectangle(), new BasicMaterial2D(context));
         this.material = new BasicMaterial2D(context);
         this.position = position;
         this.angle = angle;
         this.length = length;
         this.thickness = thickness;
-
+        models = new Mat4[2];
+        models[0] = new Mat4(new Vec2(), new Vec2(length, thickness), angle);
+        models[1] = new Mat4(new Vec2(), new Vec2(length, thickness), -angle);
     }
+
+
 
     @Override
     public boolean isInside(float x, float y) {

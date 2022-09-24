@@ -43,8 +43,7 @@ public class Object3D {
         model = new Mat4();
         rotationVelocity = new Vec3();
 
-        //inertia = new Inertia(1000, new Cosine(0.5f, 1000, new Vec2(0.0f, 0.5f)));
-        inertia = new Inertia(1000, new ExponentialFunction(2, 1000));
+        inertia = new Inertia();
 
         // Setting up model matrix. Only changes when object moves
         this.material.getShader().setModel(model);

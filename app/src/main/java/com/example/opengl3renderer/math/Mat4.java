@@ -113,6 +113,28 @@ public class Mat4 {
         this.w4 = w4;
     }
 
+    public Mat4(Vec2 position, Vec2 scale, float rotation){
+        x1 = scale.x;
+        x2 = 0.0f;
+        x3 = 0.0f;
+        x4 = position.x;
+
+        y1 = 0.0f;
+        y2 = scale.y * (float) Math.cos(rotation);
+        y3 = (float) -Math.sin(rotation);
+        y4 = position.y;
+
+        z1 = 0.0f;
+        z2 = (float) Math.sin(rotation);
+        z3 = (float) Math.cos(rotation);
+        z4 = 0.0f;
+
+        w1 = 0.0f;
+        w2 = 0.0f;
+        w3 = 0.0f;
+        w4 = 1.0f;
+    }
+
     Mat4(Vec3 position, Vec3 scale, Vec4 rotation){
         Mat4 positionScaleMatrix = new Mat4(position, scale);
         Mat4 rotationMatrix = Mat4.rotation(rotation.getVec3(), rotation.w);

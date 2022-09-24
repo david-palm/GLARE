@@ -24,7 +24,7 @@ public abstract class Object2D {
         model.y4 = position.y;
         model.x1 = scale.x;
         model.y2 = scale.y * (float) Math.cos(rotation);
-        model.z3 =  (float) -Math.sin(rotation);
+        model.y3 =  (float) -Math.sin(rotation);
         model.z2 = (float) Math.sin(rotation);
         model.z3 = (float) Math.cos(rotation);
     }

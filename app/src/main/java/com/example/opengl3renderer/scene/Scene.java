@@ -21,12 +21,17 @@ import com.example.opengl3renderer.scene.object3d.Object3D;
 import com.example.opengl3renderer.scene.object3d.StandardMaterial3D;
 import com.example.opengl3renderer.scene.object3d.StandardObject3DShader;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class Scene extends Layer {
     float aspectRatio;
     Camera camera;
     PointLight[] pointLights;
     Vec3 ambientLight;
     Object3D object;
+    boolean blockRotating;
+    Timer timer;
 
     public Scene(Context context){
         // Creating camera and lights
@@ -50,6 +55,8 @@ public class Scene extends Layer {
         material.setTextured(true);
         // Creating Object
         object = new Object3D(mesh, material);
+        blockRotating = false;
+        timer = new Timer();
     }
 
     public float getAspectRatio(){
@@ -75,6 +82,7 @@ public class Scene extends Layer {
 
     public void onUpdate(){
         object.onUpdate();
+        camera.onUpdate();
     }
 
     // Returns true if blocking
@@ -84,16 +92,21 @@ public class Scene extends Layer {
     public boolean onTouchUpEvent(TouchUpEvent e){
         object.setRotating(false);
         object.startDeceleration();
+        camera.startDeceleration();
+        // Blocking rotation for 0.05 seconds
+        timer.schedule(new TimerTask(){ public void run(){ blockRotating = false; }}, 50);
         return true;
     }
     public boolean onTouchMoveEvent(TouchMoveEvent e){
-        object.setRotating(true);
-        rotateObject(e.getDX(), e.getDY());
+        if(!blockRotating) {
+            object.setRotating(true);
+            rotateObject(e.getDX(), e.getDY());
+        }
         return true;
     }
     public boolean onScaleEvent(ScaleEvent e){
-        float zoomSpeed = 1.0f;
-        camera.setFov(camera.getFov() / e.getScaleFactor() * zoomSpeed);
+        zoom(e.getScaleFactor());
+        blockRotating = true;
         return true;
     }
 
@@ -104,7 +117,6 @@ public class Scene extends Layer {
     }
 
     public void rotateObject(float dX, float dY){
-        //TODO: Rotation speed should be dependent on fov of camera
         float rotationSpeed = 2.5f * camera.getFov();
         float degToRad = (float) (Math.PI / 180.0);
         float rotX = dX * rotationSpeed * degToRad;
@@ -112,6 +124,15 @@ public class Scene extends Layer {
         object.rotate(new Vec4(0.0f, 1.0f, 0.0f, rotX));
         object.rotate(new Vec4(1.0f, 0.0f, 0.0f, rotY));
         object.setRotationVelocity(new Vec3(rotX, rotY, 0.0f));
+    }
+
+    public void zoom(float scaleFactor){
+        float zoomSpeed = 1.0f;
+        float fov = camera.getFov();
+        if(scaleFactor != 0.0f)
+            fov /= scaleFactor * zoomSpeed;
+        camera.setFovVelocity(fov - camera.getFov());
+        camera.setFov(fov);
     }
 
     public Camera getCamera(){

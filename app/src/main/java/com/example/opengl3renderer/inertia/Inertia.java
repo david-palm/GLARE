@@ -7,6 +7,9 @@ public class Inertia {
     long duration;
     Function function;
 
+    public Inertia(){
+    }
+
     public Inertia(long duration, Function function){
         this.duration = duration;
         this.function = function;
