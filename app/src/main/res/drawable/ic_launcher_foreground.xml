@@ -4,8 +4,8 @@
     android:viewportWidth="2000"
     android:viewportHeight="2000">
   <group
-      android:translateX="525"
-      android:translateY="525">
+    android:translateX="530"
+    android:translateY="530">
     <path
         android:pathData="M476.95,476.95m-476.95,0a476.95,476.95 0,1 1,953.9 0a476.95,476.95 0,1 1,-953.9 0"
         android:fillColor="#564500"/>
