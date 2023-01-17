@@ -12,6 +12,7 @@ GLARE allows the user to render 3D meshes as well as 2D UI elements:
 - Layer system blocks user input if its already handled
 
 ## Inertia system
+The inertia system allows the user to rotate the cube and zoom the camera but can easily be attached to any property of any object in code.
 - Inertia system allows custom behaviour after the user moved an object
 - The length of the inertia as well as the form can be customized by using different mathematical functions
 - Inertia can be added to 3D objects as well as UI elements or camera controls
